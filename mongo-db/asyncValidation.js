@@ -20,6 +20,9 @@ category:{
 author: String,
 tags: {type:Array,
  validate:{
+     //we can set async functions as validators when we need to grab info from a different http server in order to 
+     //validate to use async validation set the add the key 'isAsync' and set it to 'true'
+     //then in the validator function pass in the argument that is being validfated and a callback function 
     isAsync:true,
     validator: function(v, callback){
         setTimeout(()=>{

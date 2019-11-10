@@ -15,17 +15,17 @@ const logger=require('./middleware/logger')
 const helmet=require('helmet');
 const morgan=require('morgan');
 const authenticate = require('./authenticator')
-//Moved all routed with '/api/courses/' to separate file
+//Moved all routes with '/api/courses/' to separate file
 //in order to use them we need to require them from the courses file and the tell express to use then
 //see line 46 app.use('/api/courses', courses)
 const courses=require('./routes/courses')
 const home=require('./routes/home')
-//use use debog you need to store it in a constant and pass in a name for the name space where these 
-//log messages will be stored. you will also need to create a environment variable witht that name 
+//use debug you need to store it in a constant and pass in a name for the name space where these 
+//log messages will be stored. you will also need to create a environment variable with that name 
 const debug=require('debug')('app:debug');
 // create an instance of the express class and store in variable
 const app = express()
-/*These two approaches get the type of environmet the project is set to (production, development, etc..) 
+/*These two approaches get the type of environment the project is set to (production, development, etc..) 
 NOTE: app.get will return a default value of development 'NODE_ENV' is undefined.
 
 console.log(`NODE_ENV: ${process.env.NODE_ENV}`)
@@ -35,7 +35,7 @@ console.log(`app: ${app.get('env')}`);
 // enable parsing of json objects. this feature is disabled by default
 //if there is a json object in the request this will add the json object to the "req" argument and the json
 //can be accessed as "req.body"
-//app.use tells express to use the prieces of middleware passed to the function ".use()"
+//app.use tells express to use these pieces of middleware passed to the function ".use()"
 app.use(express.json())
 //this is used if you have a url encoded request "thorough urlquesryStrings."
 //extended prop needs to be turned to true to allow arrays and object in the body of the request
@@ -60,7 +60,7 @@ if(app.get('env')==='development'){
 app.use(morgan('tiny'));
 debug('Morgan Enabled')
 }
-const courses=[{id:1,name:"course1"},{id:2,name:"course2"},{id:3,name:"course3"}];
+// const courses=[{id:1,name:"course1"},{id:2,name:"course2"},{id:3,name:"course3"}];
 
 /*
     Add a listener to listen for the request
